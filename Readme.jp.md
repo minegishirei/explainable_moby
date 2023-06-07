@@ -140,4 +140,13 @@ type Layer interface {
 
 
 
+## Swaggerfile
+
+<a src="minegishirei/explainable_moby/api/swagger.yaml">swagger.yml</a>
+
+
+
+
+
+
 

@@ -12168,4 +12168,4 @@ paths:
             $ref: "#/definitions/ErrorResponse"
       tags: ["Session"]
 
-#CHECK:swagger:
+#CHECK:swagger:copy this code to https://editor.swagger.io/
