@@ -96,3 +96,6 @@ func (s *Server) CreateMux(routers ...router.Router) *mux.Router {
 
 	return m
 }
+
+
+//!CHECK:SERVER - this is server source of docker.

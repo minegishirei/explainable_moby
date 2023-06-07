@@ -12167,3 +12167,5 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
       tags: ["Session"]
+
+#CHECK:swagger:
