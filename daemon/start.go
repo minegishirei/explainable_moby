@@ -1,3 +1,6 @@
+/*
+## コンテナ起動時の処理
+*/
 package daemon // import "github.com/docker/docker/daemon"
 
 import (
@@ -15,20 +18,30 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-//!CHECK:Container Start
+
+// コンテナ起動時の関数その1
+// 主にバリデーションチェックがなどが走る
+// 
+// !CHECK:コンテナスタート時の処理
 // ContainerStart starts a container.
 func (daemon *Daemon) ContainerStart(ctx context.Context, name string, hostConfig *containertypes.HostConfig, checkpoint string, checkpointDir string) error {
-	//!PROCESS:Container get daemon config info
+	// 1. configファイルを取得
 	daemonCfg := daemon.config()
 	if checkpoint != "" && !daemonCfg.Experimental {
 		return errdefs.InvalidParameter(errors.New("checkpoint is only supported in experimental mode"))
 	}
 
+	// 2. コンテナ取得
 	ctr, err := daemon.GetContainer(name)
 	if err != nil {
 		return err
 	}
 
+	// 3. バリデーションチェック
+	// コンテナが以下のいずれかの状態でなければ実行
+	// - ポーズ状態
+	// - 実行状態
+	// - 削除中
 	validateState := func() error {
 		ctr.Lock()
 		defer ctr.Unlock()
@@ -99,6 +112,12 @@ func (daemon *Daemon) ContainerStart(ctx context.Context, name string, hostConfi
 	return daemon.containerStart(ctx, daemonCfg, ctr, checkpoint, checkpointDir, true)
 }
 
+// コンテナ起動時の関数その2
+// 
+// containerStart は、すべての設定を行ってコンテナーを実行する準備をします。
+// ストレージやネットワーキング、リンクなどのコンテナのニーズ
+// コンテナの間。コンテナは信号を待ったままになります。
+// 
 // containerStart prepares the container to run by setting up everything the
 // container needs, such as storage and networking, as well as links
 // between containers. The container is left waiting for a signal to

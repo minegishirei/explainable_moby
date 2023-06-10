@@ -47,7 +47,11 @@ const (
 	checkpointSnapshotterNameLabel = "io.containerd.checkpoint.snapshotter"
 )
 
+// Container定義
+// Containerはコンテナリソースやタスク作成のためのメタデータです。
+// 
 // Container is a metadata object for container resources and task creation
+//!CHECK:コンテナ定義でめちゃくちゃ重要。
 type Container interface {
 	// ID identifies the container
 	ID() string

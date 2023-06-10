@@ -1,5 +1,4 @@
-// Package daemon exposes the functions that occur on the host server
-// that the Docker daemon is running.
+// パッケージ デーモンは、Docker デーモンが実行されているホスト サーバー上で発生する機能を公開します。
 //
 // In implementing the various functions of the daemon, there is often
 // a method-specific struct for configuring the runtime behavior.
