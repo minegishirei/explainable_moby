@@ -77,6 +77,27 @@ import (
 	"resenje.org/singleflight"
 )
 
+// Deamon config informations
+// called from Deamon
+// 
+// ```sh
+// cfg := &configStore{}
+// 
+// err = mount.MakePrivate(testRoot)
+// assert.NilError(t, err)
+// defer mount.Unmount(testRoot)
+// 
+// cfg.ExecRoot = filepath.Join(testRoot, "exec")
+// cfg.Root = filepath.Join(testRoot, "daemon")
+// 
+// err = os.Mkdir(cfg.ExecRoot, 0755)
+// assert.NilError(t, err)
+// err = os.Mkdir(cfg.Root, 0755)
+// assert.NilError(t, err)
+// 
+// d := &Daemon{root: cfg.Root}
+// d.configStore.Store(cfg)
+// ```
 type configStore struct {
 	config.Config
 
