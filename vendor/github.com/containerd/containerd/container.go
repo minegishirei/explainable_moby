@@ -13,7 +13,6 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-
 package containerd
 
 import (
@@ -101,7 +100,7 @@ type container struct {
 	metadata containers.Container
 }
 
-// ID returns the container's unique id
+// ID returns the container's unique ida
 func (c *container) ID() string {
 	return c.id
 }
