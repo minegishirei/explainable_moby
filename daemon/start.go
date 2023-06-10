@@ -15,8 +15,10 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+//!CHECK:Container Start
 // ContainerStart starts a container.
 func (daemon *Daemon) ContainerStart(ctx context.Context, name string, hostConfig *containertypes.HostConfig, checkpoint string, checkpointDir string) error {
+	//!PROCESS:Container get daemon config info
 	daemonCfg := daemon.config()
 	if checkpoint != "" && !daemonCfg.Experimental {
 		return errdefs.InvalidParameter(errors.New("checkpoint is only supported in experimental mode"))

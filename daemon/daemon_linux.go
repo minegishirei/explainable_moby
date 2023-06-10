@@ -30,6 +30,7 @@ func getPluginExecRoot(_ *config.Config) string {
 }
 
 func (daemon *Daemon) cleanupMountsByID(id string) error {
+	//!PROCESS:CLEANUP clean up docker deamon
 	logrus.Debugf("Cleaning up old mountid %s: start.", id)
 	f, err := os.Open("/proc/self/mountinfo")
 	if err != nil {
